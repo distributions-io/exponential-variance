@@ -2,16 +2,16 @@ Variance
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> [exponential](https://en.wikipedia.org/wiki/exponential_distribution) distribution [variance](https://en.wikipedia.org/wiki/variance).
+> [Exponential](https://en.wikipedia.org/wiki/exponential_distribution) distribution [variance](https://en.wikipedia.org/wiki/variance).
 
-The [variance](https://en.wikipedia.org/wiki/variance) for a [exponential](https://en.wikipedia.org/wiki/exponential_distribution) random variable is
+The [variance](https://en.wikipedia.org/wiki/variance) for an [exponential](https://en.wikipedia.org/wiki/exponential_distribution) random variable is
 
-<div class="equation" align="center" data-raw-text="\operatorname{}\left[ X \right] = " data-equation="eq:variance">
-	<img src="" alt="variance for a exponential distribution.">
+<div class="equation" align="center" data-raw-text="\operatorname{Var}\left[ X \right] = \frac{1}{\lambda^2}" data-equation="eq:variance">
+	<img src="https://cdn.rawgit.com/distributions-io/exponential-variance/e95737a95a023db89e6f8009dba248ba728d6305/docs/img/eqn.svg" alt="Variance for an exponential distribution.">
 	<br>
 </div>
 
-where `0 &lt;=lambda&lt;= 1` is the rate parameter.
+where `lambda > 0` is the rate parameter.
 
 
 ## Installation
@@ -41,16 +41,16 @@ var matrix = require( 'dstructs-matrix' ),
 	i;
 
 out = variance( 0.5 );
-// returns ~4.000
+// returns 4.000
 
 lambda = [ 0.5, 1, 2, 4 ];
 out = variance( lambda );
 
-// returns [ ~4.000, ~1.000, ~0.250, ~0.063 ]
+// returns [ 4.000, 1.000, 0.250, ~0.063 ]
 
 lambda = new Float32ArrayArray( lambda );
 out = variance( lambda );
-// returns Float64Array( [~4.000,~1.000,~0.250,~0.063] )
+// returns Float64Array( [4.000,1.000,0.250,~0.063] )
 
 lambda =  matrix( [ 0.5, 1, 2, 4 ], [2,2] );
 /*
@@ -60,8 +60,8 @@ lambda =  matrix( [ 0.5, 1, 2, 4 ], [2,2] );
 
 out = variance( lambda );
 /*
-	[ ~4.000 ~1.000,
-	  ~0.250 ~0.063 ]
+	[ 4.000 1.000,
+	  0.250 ~0.063 ]
 */
 ```
 
@@ -90,7 +90,7 @@ function getValue( d, i ) {
 var out = variance( lambda, {
 	'accessor': getValue
 });
-// returns [ ~4.000, ~1.000, ~0.250, ~0.063 ]
+// returns [ 4.000, 1.000, 0.250, ~0.063 ]
 ```
 
 To [deepset](https://github.com/kgryte/utils-deep-set) an object `array`, provide a key path and, optionally, a key path separator.
@@ -106,9 +106,9 @@ var lambda = [
 var out = variance( lambda, 'x|1', '|' );
 /*
 	[
-		{'x':[9,~4.000]},
-		{'x':[9,~1.000]},
-		{'x':[9,~0.250]},
+		{'x':[9,4.000]},
+		{'x':[9,1.000]},
+		{'x':[9,0.250]},
 		{'x':[9,~0.063]},
 	]
 */
@@ -150,7 +150,7 @@ lambda = [ 0.5, 1, 2, 4 ];
 out = variance( lambda, {
 	'copy': false
 });
-// returns [ ~4.000, ~1.000, ~0.250, ~0.063 ]
+// returns [ 4.000, 1.000, 0.250, ~0.063 ]
 
 bool = ( data === out );
 // returns true
@@ -165,8 +165,8 @@ out = variance( mat, {
 	'copy': false
 });
 /*
-	[ ~4.000 ~1.000,
-	  ~0.250 ~0.063 ]
+	[ 4.000 1.000,
+	  0.250 ~0.063 ]
 */
 
 bool = ( mat === out );
